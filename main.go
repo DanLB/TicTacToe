@@ -33,7 +33,7 @@ func main() {
 	http.HandleFunc("/tictactoe", index)
 	http.HandleFunc("/tictactoe/register", newRegistration)
 	http.HandleFunc("/tictactoe/turn", turnReceived)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":80", nil)
 }
 
 func initLogging() {
