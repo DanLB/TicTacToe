@@ -17,6 +17,8 @@ var waitingGames = make(chan string, 100) //Stores the gameId
 var nextPlayerId uint32 = 10001
 
 func main() {
+	initLogging()
+
 	newGame := game.NewGame()
 	newGame.GameId = generateGameId()
 	newGame.PlayerX = 10000
@@ -25,13 +27,21 @@ func main() {
 	gameMap[newGame.GameId] = newGame
 	waitingGames <- newGame.GameId
 
-	log.Println("Starting the server on port 8080")
+	game.Log("Starting the server on port 8080")
 
 	http.Handle("/", http.FileServer(http.Dir("./static/")))
 	http.HandleFunc("/tictactoe", index)
 	http.HandleFunc("/tictactoe/register", newRegistration)
 	http.HandleFunc("/tictactoe/turn", turnReceived)
 	http.ListenAndServe(":8080", nil)
+}
+
+func initLogging() {
+	err := game.Init()
+
+	if err != nil {
+		log.Fatal(err.Error)
+	}
 }
 
 func generateGameId() string {
@@ -41,7 +51,7 @@ func generateGameId() string {
 	    return ""
 	}
 	uuid := u4.String()
-	log.Println(uuid)
+	game.Log("Generating game ID: " + uuid)
 	return uuid
 }
 
