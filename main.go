@@ -149,7 +149,11 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	var currentTurn game.Turn
-	json.Unmarshal(body, &currentTurn)
+	err = json.Unmarshal(body, &currentTurn)
+
+	if err != nil {
+		handleError(w, err.Error())
+	}
 
 	currentGame, ok := gameMap[currentTurn.GameId]
 
@@ -157,6 +161,7 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 	if ok == false {
 		results = game.Results{Error: "Game does not exist"}
 	} else {
+		game.Log(currentTurn)
 		results = currentGame.HandleTurn(currentTurn)
 		if results.Winner > 0 {
 			delete(gameMap, currentTurn.GameId)
