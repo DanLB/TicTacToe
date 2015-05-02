@@ -2,15 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tic Tac Toe</title>
         <script src="scripts/tictactoe.js"></script>
         <script src="scripts/common.js"></script>
-        <link rel="stylesheet" type="text/css" href="style/game.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="style/game.css" />
     </head>
 
     <body onload="init()" background="blue">
         <button onclick="register()">Register</button>
-        <canvas id="tictactoe" class="tictactoe" onclick="handleClick(event)"></canvas>
+        <div id="ticWrap"><canvas id="tictactoe" onclick="handleClick(event)"></canvas></div>
         <div id="test"></div>
     </body>
 </html>

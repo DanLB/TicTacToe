@@ -27,7 +27,7 @@ func main() {
 	gameMap[newGame.GameId] = newGame
 	waitingGames <- newGame.GameId
 
-	game.Log("Starting the server on port 8080")
+	game.Log("Starting the server on port 80")
 
 	http.Handle("/", http.FileServer(http.Dir("./static/")))
 	http.HandleFunc("/tictactoe", index)
@@ -58,6 +58,20 @@ func generateGameId() string {
 func index(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello World"))
 }
+
+// func newGame(w http.ResponseWriter, r *http.Request) {
+// 	//todo constructor to generate game.
+// 	newGame := game.NewGame()
+// 	newGame.GameId = generateGameId()
+// 	//todo create getNextPlayerId()
+// 	// newGame.PlayerX = nextPlayerId++;
+// 	newGame.TurnId = newGame.PlayerX;
+
+// 	gameMap[newGame.GameId] = newGame
+// 	waitingGames <- newGame.GameId
+
+// 	game.Log("New game, currently " + len(waitingGames) + " waiting games.")
+// }
 
 func newRegistration(w http.ResponseWriter, r *http.Request) {
 	select {
@@ -99,6 +113,8 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 
 	var currentTurn game.Turn
 	json.Unmarshal(body, &currentTurn)
+
+	//todo validate values > 0, etc.
 
 	currentGame, ok := gameMap[currentTurn.GameId]
 

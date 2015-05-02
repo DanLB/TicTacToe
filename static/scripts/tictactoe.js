@@ -29,10 +29,6 @@ const YINT = 2;
 var ticGame = new TicGame();
 
 function init() {
-    var canvas = document.getElementById("tictactoe");
-    canvas.width = screen.width / 5;
-    canvas.height = screen.width / 5;
-
     drawBoard();
 }
 
@@ -94,7 +90,10 @@ function drawBoard() {
     var canvas = document.getElementById("tictactoe");
     var ticContext = canvas.getContext("2d");
 
+    canvas.height = canvas.width;
     canvas.width = canvas.width;
+    canvas.style.height = canvas.width;
+    canvas.style.width = canvas.width;
 
     var squareSize = canvas.width / 3;
 

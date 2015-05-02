@@ -52,7 +52,7 @@ func (currentGame *Game) HandleTurn(currentTurn Turn) Results {
 	column := currentTurn.ClickX / currentTurn.SquareSize
 	row := currentTurn.ClickY / currentTurn.SquareSize
 
-	index := column + 3* row
+	index := column + 3 * row
 
 	if currentGame.Squares[index] != 0 {
 		return Results{Error: "Square already occupied."}
