@@ -67,6 +67,7 @@ func forfeit(w http.ResponseWriter, r *http.Request) {
 		jsonResults, err := json.Marshal(results)
 		if err != nil {
 			handleError(w, err.Error())
+			return
 		}
 		w.Write(jsonResults)
 		return
@@ -76,6 +77,7 @@ func forfeit(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		handleError(w, err.Error())
+		return
 	}
 
 	defer r.Body.Close()
@@ -144,6 +146,7 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		handleError(w, err.Error())
+		return
 	}
 
 	defer r.Body.Close()
@@ -153,6 +156,7 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		handleError(w, err.Error())
+		return
 	}
 
 	currentGame, ok := gameMap[currentTurn.GameId]
@@ -174,6 +178,7 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		handleError(w, err.Error())
+		return
 	}
 
 	w.Write(jsonResults)

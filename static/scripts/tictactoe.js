@@ -69,9 +69,9 @@ function handleClick(event) {
     var bb = canvas.getBoundingClientRect();
 
     var turn = new Turn(
-        (event.clientX - bb.left) * (canvas.width / bb.width),
-        (event.clientY - bb.top) * (canvas.height / bb.height),
-        canvas.width / 3,
+        parseInt((event.clientX - bb.left) * (canvas.width / bb.width)),
+        parseInt((event.clientY - bb.top) * (canvas.height / bb.height)),
+        parseInt(canvas.width / 3),
         ticGame.turn,
         ticGame.gameId
     );
