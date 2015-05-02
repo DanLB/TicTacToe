@@ -58,6 +58,8 @@ function registered(registration) {
     ticGame.player2 = registration.OpponentId;
     ticGame.turn = registration.PlayerX;
 
+    drawBoard();
+
     displayMessage(ticGame.gameId);
 }
 
