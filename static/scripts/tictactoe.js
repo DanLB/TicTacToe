@@ -26,7 +26,7 @@ const BLANK = 0;
 const XINT = 1;
 const YINT = 2;
 
-var ticGame;
+var ticGame = new TicGame();
 
 function init() {
     drawBoard();
