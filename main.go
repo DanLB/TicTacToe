@@ -32,6 +32,7 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("./static/")))
 	http.HandleFunc("/tictactoe", index)
 	http.HandleFunc("/tictactoe/register", newRegistration)
+	http.HandleFunc("/tictactoe/forfeit", forfeit)
 	http.HandleFunc("/tictactoe/turn", turnReceived)
 	http.ListenAndServe(":80", nil)
 }
@@ -57,6 +58,34 @@ func generateGameId() string {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello World"))
+}
+
+func forfeit(w http.ResponseWriter, r *http.Request) {
+	if r.Body == nil {
+		w.WriteHeader(400);
+		results := game.Results{Error: "Game ID and Player ID is required."}
+		jsonResults, err := json.Marshal(results)
+		if err != nil {
+			handleError(w, err.Error())
+		}
+		w.Write(jsonResults)
+		return
+	}
+
+	body, err := ioutil.ReadAll(r.Body)
+
+	if err != nil {
+		handleError(w, err.Error())
+	}
+
+	defer r.Body.Close()
+
+	var forfeiter game.Turn
+	json.Unmarshal(body, &forfeiter)
+
+	game.Log("Player " + string(forfeiter.PlayerId) + " forfeited.")
+
+	delete(gameMap, forfeiter.GameId)
 }
 
 // func newGame(w http.ResponseWriter, r *http.Request) {
@@ -94,7 +123,15 @@ func newRegistration(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	default:
-		w.WriteHeader(409)
+		newGame := game.NewGame()
+		newGame.GameId = generateGameId()
+		newGame.PlayerX = nextPlayerId
+		nextPlayerId = nextPlayerId + 1
+		newGame.TurnId = newGame.PlayerX;
+
+		gameMap[newGame.GameId] = newGame
+		waitingGames <- newGame.GameId
+		newRegistration(w, r)
 	}
 }
 
@@ -114,8 +151,6 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 	var currentTurn game.Turn
 	json.Unmarshal(body, &currentTurn)
 
-	//todo validate values > 0, etc.
-
 	currentGame, ok := gameMap[currentTurn.GameId]
 
 	var results game.Results
@@ -123,8 +158,11 @@ func turnReceived(w http.ResponseWriter, r *http.Request) {
 		results = game.Results{Error: "Game does not exist"}
 	} else {
 		results = currentGame.HandleTurn(currentTurn)
-		//Update map
-		gameMap[currentTurn.GameId] = currentGame
+		if results.Winner > 0 {
+			delete(gameMap, currentTurn.GameId)
+		} else {
+			gameMap[currentTurn.GameId] = currentGame
+		}
 	}
 
 	jsonResults, err := json.Marshal(results)

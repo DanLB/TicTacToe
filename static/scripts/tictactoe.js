@@ -3,7 +3,7 @@ function TicGame() {
     this.player2 = 0;
     this.turn = 0;
     this.squares = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    this.gameId = 0;
+    this.gameId = "";
 }
 
 function Turn(clickX, clickY, squareSize, playerId, gameId) {
@@ -33,6 +33,16 @@ function init() {
 }
 
 function register() {
+    if (ticGame.gameId != "") {
+        var warning = ticGame.turn != 0 ? " This will forfeit your current game." : "";
+        var newGame = confirm("Do you want to start a new game?" + warning);
+        if (!newGame) {
+            return;
+        }
+        var turn = new Turn(0, 0, 0, ticGame.turn, ticGame.gameId);
+        ajaxRequest("/tictactoe/forfeit", turn);
+    }
+
     ajaxRequest("/tictactoe/register", "", registered);
 }
 

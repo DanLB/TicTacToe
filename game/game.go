@@ -47,6 +47,8 @@ func NewGame() Game {
 func (currentGame *Game) HandleTurn(currentTurn Turn) Results {
 	if currentGame.TurnId != currentTurn.PlayerId {
 		return Results{Error: "Not your turn."}
+	} else if currentGame.Winner != 0 {
+		return Results {Error: "Sorry, game is over."}
 	}
 
 	column := currentTurn.ClickX / currentTurn.SquareSize
