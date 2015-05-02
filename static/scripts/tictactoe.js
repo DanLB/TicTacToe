@@ -26,7 +26,7 @@ const BLANK = 0;
 const XINT = 1;
 const YINT = 2;
 
-var ticGame = new TicGame();
+var ticGame;
 
 function init() {
     drawBoard();
@@ -52,6 +52,7 @@ function registered(registration) {
         return;
     }
 
+    ticGame = new TicGame();
     ticGame.gameId = registration.GameId;
     ticGame.player1 = registration.PlayerId;
     ticGame.player2 = registration.OpponentId;
