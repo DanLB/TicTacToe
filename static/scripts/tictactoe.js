@@ -32,18 +32,36 @@ function init() {
     drawBoard();
 }
 
-function register() {
-    if (ticGame.gameId != "") {
-        var warning = ticGame.turn != 0 ? " This will forfeit your current game." : "";
-        var newGame = confirm("Do you want to start a new game?" + warning);
-        if (!newGame) {
+function newGame() {
+    if (ticGame.turn > 0) {
+        if (!forfeit(" Forfeit and start a new game?")) {
             return;
         }
-        var turn = new Turn(0, 0, 0, ticGame.turn, ticGame.gameId);
-        ajaxRequest("/tictactoe/forfeit", turn);
     }
 
     ajaxRequest("/tictactoe/register", "", registered);
+}
+
+function forfeit(message) {
+    if (!message) {
+        message = "";
+    }
+    var result = false;
+    if (ticGame.gameId != "" && ticGame.turn > 0) {
+        var newGame = confirm("This will forfeit your current game." + message);
+        if (!newGame) {
+            return false;
+        }
+        var turn = new Turn(0, 0, 0, ticGame.turn, ticGame.gameId);
+        ajaxRequest("/tictactoe/forfeit", turn);
+        displayMessage("Game forfeited.");
+        result = true;
+    } else {
+        displayMessage("No game currently started.");
+    }
+    ticGame = new TicGame();
+    drawBoard();
+    return result;
 }
 
 function registered(registration) {
@@ -68,6 +86,10 @@ function displayMessage(message) {
 }
 
 function handleClick(event) {
+    if (ticGame.gameId == "") {
+        displayMessage("No game currently started.");
+        return;
+    }
     var canvas = document.getElementById("tictactoe");
     var bb = canvas.getBoundingClientRect();
 
@@ -87,16 +109,19 @@ function turnResults(results) {
         displayMessage(results.err);
         return;
     }
-    if (results.winner > 0) {
-        displayMessage(
-            results.winner == ticGame.player1 ? "Congratulations, You win!" : "You lost, better luck next time!"
-        );
-    }
+
     var index = results.index;
     ticGame.squares[index] = results.value;
     ticGame.turn = results.turn;
 
     drawBoard();
+
+    if (results.winner > 0) {
+        displayMessage(
+            results.winner == ticGame.player1 ? "Congratulations, You win!" : "You lost, better luck next time!"
+        );
+        ticGame = new TicGame();
+    }
 }
 
 function drawBoard() {

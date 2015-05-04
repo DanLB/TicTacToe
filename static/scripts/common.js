@@ -5,12 +5,18 @@ function ajaxRequest(url, body, callback) {
     request.onreadystatechange = function() {
         if (request.readyState == 4)
         {
-            if (request.status == 200) {
-                return callback(JSON.parse(request.responseText));
+            if (request.status == 200 && request.getResponseHeader("Content-Length") > 0) {
+                call(callback, JSON.parse(request.responseText));
             } else {
-                return callback(request.status);
+                call(callback, request.status);
             }
         }
     }
     request.send(JSON.stringify(body));
+}
+
+function call(callback, object) {
+    if (callback) {
+        callback(object);
+    }
 }
