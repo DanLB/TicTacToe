@@ -121,7 +121,7 @@ function turnResults(results) {
     if (results.winner > 0) {
         displayMessage(
             // results.winner == ticGame.player1 ? "Congratulations, You win!" : "You lost, better luck next time!"
-            results.winner == ticGame.playerX ? "X wins!" : "O wins!";
+            results.winner == ticGame.playerX ? "X wins!" : "O wins!"
         );
         ticGame = new TicGame();
     }
