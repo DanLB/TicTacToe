@@ -4,6 +4,7 @@ function TicGame() {
     this.turn = 0;
     this.squares = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.gameId = "";
+    this.playerX = 0;
 }
 
 function Turn(clickX, clickY, squareSize, playerId, gameId) {
@@ -75,6 +76,7 @@ function registered(registration) {
     ticGame.player1 = registration.PlayerId;
     ticGame.player2 = registration.OpponentId;
     ticGame.turn = registration.PlayerX;
+    ticGame.playerX = registration.PlayerX;
 
     drawBoard();
 
@@ -118,7 +120,8 @@ function turnResults(results) {
 
     if (results.winner > 0) {
         displayMessage(
-            results.winner == ticGame.player1 ? "Congratulations, You win!" : "You lost, better luck next time!"
+            // results.winner == ticGame.player1 ? "Congratulations, You win!" : "You lost, better luck next time!"
+            results.winner == ticGame.playerX ? "X wins!" : "O wins!";
         );
         ticGame = new TicGame();
     }
@@ -163,7 +166,7 @@ function drawBoard() {
         for (var j = 0; j < 3; j++) {
             var index = i + j;
             if (squares[index] === BLANK) { continue; }
-            var symbol = XINT === squares[index] ? "X" : "Y";
+            var symbol = XINT === squares[index] ? "X" : "O";
             x = j * squareSize + sqHalf;
             y = i / 3 * squareSize + squareSize * 0.6;
             ticContext.fillText(symbol, x, y, squareSize);
