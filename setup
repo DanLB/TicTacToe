@@ -1,6 +1,6 @@
 #!/bin/sh
-#Simple Shell script to update TicTacToe, install any changes
-# copy files necessary, and restart the TicTacToe service.
+#Simple Shell script to update TicTacToe, install any changes,
+#    copy files necessary, and restart the TicTacToe service.
 cd /home/go/src/github.com/DanLB/tictactoe/
 echo `git pull`
 
