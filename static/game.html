@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tic Tac Toe</title>
-        <script src="scripts/tictactoe.js"></script>
-        <script src="scripts/common.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="style/game.css" />
+        <script async src="scripts/tictactoe.js"></script>
+        <script async src="scripts/common.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" media="screen" href="style/game.css" /> -->
     </head>
 
     <body onload="init()" background="blue">
@@ -18,5 +18,16 @@
         <canvas id="tictactoe" onclick="handleClick(event)"></canvas>
         </div>
         <div id="message" class="center"></div>
+        <script>
+          var cb = function() {
+            var l = document.createElement('link'); l.rel = 'stylesheet'; l.media = "screen"
+            l.href = 'style/game.css';
+            var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+          };
+          var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+              webkitRequestAnimationFrame || msRequestAnimationFrame;
+          if (raf) raf(cb);
+          else window.addEventListener('load', cb);
+        </script>
     </body>
 </html>
