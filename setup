@@ -1,5 +1,18 @@
 #!/bin/sh
+#Simple Shell script to update TicTacToe, install any changes,
+#    copy files necessary, and restart the TicTacToe service.
+cd /home/go/src/github.com/DanLB/tictactoe/
+echo `git pull`
 
 sudo cp -pR static ../../../../bin
-echo "Copied static into ../../../../bin"
+go install
+echo "Copied static and installed go"
 
+cd ../../../../bin
+
+ticPid=`ps axf | grep tictactoe | grep -v grep | awk '{print $1}'`
+echo "Killing TicTacToe PID:"$ticPid
+kill $ticPid
+
+tictactoe &
+echo "TicTacToe started with PID:"$!
