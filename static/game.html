@@ -10,9 +10,13 @@
     </head>
 
     <body onload="init()" background="blue">
+        <div class="btn center">
         <button onclick="newGame()">New Game</button>
         <button onclick="forfeit()">Forfeit</button>
-        <div id="ticWrap"><canvas id="tictactoe" onclick="handleClick(event)"></canvas></div>
-        <div id="test"></div>
+        </div>
+        <div class="ticWrap center">
+        <canvas id="tictactoe" onclick="handleClick(event)"></canvas>
+        </div>
+        <div id="message" class="center"></div>
     </body>
 </html>

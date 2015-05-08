@@ -83,14 +83,19 @@ function registered(registration) {
     displayMessage(ticGame.gameId);
 }
 
-function displayMessage(message) {
-    document.getElementById("test").innerHTML = message;
+function displayMessage(message, append) {
+    var messageDiv = document.getElementById("message");
+
+    if (append) {
+        messageDiv.innerHTML = messageDiv.innerHTML + message;
+    } else {
+        messageDiv.innerHTML = message;
+    }
 }
 
 function handleClick(event) {
     if (ticGame.gameId == "") {
-        displayMessage("No game currently started.");
-        return;
+        newGame();
     }
     var canvas = document.getElementById("tictactoe");
     var bb = canvas.getBoundingClientRect();
