@@ -95,8 +95,13 @@ function displayMessage(message, append) {
 
 function handleClick(event) {
     if (ticGame.gameId == "") {
-        newGame();
+        ajaxRequest("/tictactoe/register", "", function(registration) {
+            registered(registration);
+            handleClick(event);
+        });
+        return;
     }
+
     var canvas = document.getElementById("tictactoe");
     var bb = canvas.getBoundingClientRect();
 
