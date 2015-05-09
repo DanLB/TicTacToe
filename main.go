@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"log"
 	"github.com/nu7hatch/gouuid"
+	"github.com/daaku/go.httpgzip"
 )
 
 //Map of Game ID to Game
@@ -29,7 +30,7 @@ func main() {
 
 	game.Log("Starting the server on port 80")
 
-	http.Handle("/", http.FileServer(http.Dir("./static/")))
+	http.Handle("/", httpgzip.NewHandler(http.FileServer(http.Dir("./static/"))))
 	http.HandleFunc("/tictactoe", index)
 	http.HandleFunc("/tictactoe/register", newRegistration)
 	http.HandleFunc("/tictactoe/forfeit", forfeit)
