@@ -9,12 +9,14 @@ body
 button {
     margin-top: .5em;
     background-color: #238bc6;
-    height: 2em;
+    height: 3em;
     width: 10em;
     border-radius: .5em;
     box-shadow: none;
     border: none;
     outline: none;
+    font-weight: bold;
+    font-family: Helvetica;
 }
 
 button:hover {
@@ -97,6 +99,10 @@ button:hover {
 
     #message {
         width: 90vw;
+    }
+
+    button {
+        height: 4em;
     }
 }
 
