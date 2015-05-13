@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <meta charset="UTF-8"/>
+  <title>Vintners Winery</title>
+  <link rel="stylesheet" href="wine.css">
+
+  <body>
+
+  <div class="main center">
+  <h1>Vintner's winery</h1>
+  <ul class="navbar">
+      <li><a href="index.html" id="home">Home</a></li>
+      <li><a href="gallery.html" id="gallery">Gallery</a></li>
+      <li><a href="contact.html" id="link">Find &amp; Contact</a></li>
+  </ul>
+  <div onclick="displayCover('inline')">
+    <img width="200px" height="200px" src="http://www.thecreativepenn.com/wp-content/uploads/2012/10/bigstockHelp.jpg">
+    <img width="200px" height="200px" src="http://www.thecreativepenn.com/wp-content/uploads/2012/10/bigstockHelp.jpg">
+  </div>
+  <div class="cover" id="cover">
+    <div class="center">
+      <button onclick="displayCover('none')">X</button>
+      <img alt="image" src="http://www.thecreativepenn.com/wp-content/uploads/2012/10/bigstockHelp.jpg">
+    </div>
+  </div>
+  </div>
+  <script>
+  function displayCover(display) {
+    document.getElementById('cover').style.display=display;
+  }
+  </script>
+  </body>
+</html>
