@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Cicle';
+    src: url('font/Quicksand-Regular.otf');
+}
+
+@font-face {
+    font-family: 'cbox';
+    src: url('font/ChocolateBoxDecorative.TTF');
+}
+
+body {
+  background-color: #EDE6CE;
+  font-family: "Arial Black", Helvetica, sans-serif;
+  font-size: 1.2em;
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-family: cbox;
+    font-size: 3em;
+    margin: 20px 0 0;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar
+{
+    display: block;
+    float: left;
+    list-style-type:none;
+    margin:0 0 10px;
+    padding:0;
+    width: 100%;
+    font-family: Cicle;
+}
+
+.navbar li
+{
+    float:left;
+    padding-right: .75em;
+    padding-left: .75em;
+}
+
+.navbar a:link, .navbar a:visited
+{
+    display:block;
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+}
+
+.navbar a:hover, .navbar a:active
+{
+    color:#FF0000;
+}
+
+.main {
+    width: 600px;
+}
+
+#map-canvas {
+    width: 300px;
+    height: 300px;
+}
+
+.contact {
+    width: 300px;
+    height: 300px;
+    float: right;
+}
+
+#info
+{
+    color:red;
+    font-size: .8em;
+    display: inline;
+}

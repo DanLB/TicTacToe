@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Vintner's Winery - Bismarck ND Winery & Brewing Supplies</title>
+    <link rel="stylesheet" href="wine.css">
+  </head>
+  <body>
+    <div class="main center">
+    <div class="title">
+    <h1><div class="center">Vintner's winery</div></h1>
+    <ul class="navbar">
+      <li><a href="index.html" id="home">Home</a></li>
+      <li><a href="contact.html" id="link">Find &amp; Contact</a></li>
+    </ul>
+    </div>
+    <form class="contact" name="contactForm">
+      <fieldset>
+        <legend>Send us a Message</legend>
+        Name: <input type="text" id="name">
+        <br />
+        Email: <input type="text" id="email">
+        <br />
+        Message: <textarea id="message" cols="30" rows="8"></textarea>
+        <button type="button" onclick="sendEmail()">Send Message</button>
+      </fieldset>
+    </form>
+    <div id="map-canvas"></div>
+    <button onclick="calculateRoute()">Calculate Route</button>
+    <div id="info"></div>
+    <div id="map-directions"></div>
+    </div>
+    <script defer src="winery.js"></script>
+    <script>
+      function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+            '&signed_in=true&callback=initialize';
+        document.body.appendChild(script);
+      }
+
+      window.onload = loadScript;
+    </script>
+  </body>
+</html>
