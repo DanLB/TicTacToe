@@ -1,0 +1,143 @@
+body
+{
+	padding: 0;
+	margin: 0;
+	background-color: #cccc99;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: .75em;
+}
+
+button
+{
+	background-color: #7d6888;
+	color: white;
+	font-family: Georgia;
+	font-weight: bold;
+	height: 2.5em;
+	width: 11em;
+	border-radius: .5em;
+	box-shadow: none;
+	border: none;
+	outline: none;
+	margin: 3px;
+	cursor: pointer;
+}
+
+button:hover
+{
+	color: black;
+}
+
+#options {
+	display: none;
+}
+
+.option
+{
+	border-radius: 1em;
+	background-color: #9CBDA4;
+	width: 20%;
+	float: right;	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.option h2
+{
+	margin: 0;
+	margin-right: 2px;
+	background-color: #749A7C;
+	display: block;
+	outline: none;
+	border: none;
+	border-top-left-radius: .5em;
+	border-top-right-radius: .5em;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+}
+
+.option h2:hover
+{
+	color: white;
+	cursor: pointer;
+}
+
+.option h3
+{
+	margin: 1px;
+}
+
+.aligncheckboxes
+{
+	padding-left: 30%;
+	text-align: left;
+	padding-bottom: 5%;
+}
+
+.game
+{
+	width: 60%;
+	margin: auto;
+	background-color: #8D433B;
+	text-align: center;
+	border-radius: 1em;
+}
+
+.game h1
+{
+	color: #DEBBB7;
+	margin-bottom: 0;
+	font-size: 3em;
+	font-weight: bolder;
+}
+
+.game hr
+{
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	box-shadow: none;
+	background-color: black;
+}
+
+.action
+{
+	color: white;
+	font-family: Georgia;
+	font-weight: bold;
+	height: 3em;
+	width: 9em;
+	background-color: #5C002E;
+	border-radius: .5em;
+	box-shadow: none;
+	border: none;
+	outline: none;
+	margin-bottom: 2px;
+}
+
+.action:hover
+{
+	border: 1px solid black;
+}
+
+.answer
+{
+	color: #DEDEB0;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.can
+{
+	width: 600px;
+	height: 400px;
+	background-color: white;
+}
+
+#tempotext
+{
+	width: 10%;
+}

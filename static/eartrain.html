@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Learn Ear Training!</title>
+		<script src="scripts/eartrain/acoustic_grand_piano.js"></script>
+		<script src="scripts/eartrain/base64binary.js"></script>
+		<script src="scripts/eartrain/init.js"></script>
+		<script src="scripts/eartrain/buffer-loader.js"></script>
+		<script src="scripts/eartrain/enumeration.js"></script>
+		<script src="scripts/eartrain/interval.js"></script>
+		<script src="scripts/eartrain/option.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/singstyle.css" />
+	</head>
+	<body onload="init()" id="bod">
+	<a href="index.html">Home</a>
+		<!--Options DIV -->
+		<div class="option">
+			<h2 id="optionsHeader">Options</h2>
+			<form id="options">
+				<input type="submit" name="submitOptions" value="Save" id="saveOptions">
+				<h3>Interval Direction</h3>
+					<input type="radio" name="ascend" value="ascend" checked="checked">Ascending<br />
+					<input type="radio" name="ascend" value="descend">Descending<br />
+					<input type="radio" name="ascend" value="both">Both
+				<h3>Interval Type</h3>
+					<input type="radio" name="melodic" value="melodic" checked="checked">Melodic<br />
+					<input type="radio" name="melodic" value="harmonic">Harmonic<br />
+				<h3>Tempo</h3>
+					<input type="range" name="tempo" min="28" max="120" step="4" value="60" id="temporange">
+					<input type="text" name="tempotext" value="60" id="tempotext">
+				<h3>Intervals</h3>
+				<div class=aligncheckboxes id="optioncheck">
+					<input type="checkbox" name="Unison" value="Unison" checked="checked">Unison<br />
+					<input type="checkbox" name="MinorSecond" value="MinorSecond" checked="checked">Minor Second<br />
+					<input type="checkbox" name="MajorSecond" value="MajorSecond" checked="checked">Major Second<br />
+					<input type="checkbox" name="MinorThird" value="MinorThird" checked="checked">Minor Third<br />
+					<input type="checkbox" name="MajorThird" value="MajorThird" checked="checked">Major Third<br />
+					<input type="checkbox" name="PerfectFourth" value="PerfectFourth" checked="checked">Perfect Fourth<br />
+					<input type="checkbox" name="Tritone" value="Tritone" checked="checked">Tritone<br />
+					<input type="checkbox" name="PerfectFifth" value="PerfectFifth" checked="checked">Perfect Fifth<br />
+					<input type="checkbox" name="MinorSixth" value="MinorSixth" checked="checked">Minor Sixth<br />
+					<input type="checkbox" name="MajorSixth" value="MajorSixth" checked="checked">Major Sixth<br />
+					<input type="checkbox" name="MinorSeventh" value="MinorSeventh" checked="checked">Minor Seventh<br />
+					<input type="checkbox" name="MajorSeventh" value="MajorSeventh" checked="checked">Major Seventh<br />
+					<input type="checkbox" name="Octave" value="Octave" checked="checked">Octave<br />
+					<input type="checkbox" name="MinorNinth" value="MinorNinth" checked="checked">Minor Ninth<br />
+					<input type="checkbox" name="MajorNinth" value="MajorNinth" checked="checked">MajorNinth
+				</div>
+			</form>
+		</div>
+
+		<h1 align="center" style="display:none;">Here we will practice ear training</h1>
+
+		<div class="game">
+			<h1>Intervals</h1>
+			<div id="intervalgame">
+				<span style="width:100%;">
+					<button type="button" name="New Interval" id="newinterval" class="action">New Interval</button>
+					<button type="button" name="Play Again" id="playagain" class="action">Play Again</button>
+				</span>
+				<div id="buttons">
+					<button type="button" name="Unison">Unison</button>
+					<button type="button" name="MinorSecond">Minor Second</button>
+					<button type="button" name="MajorSecond">Major Second</button>
+					<button type="button" name="MinorThird">Minor Third</button>
+					<button type="button" name="MajorThird">Major Third</button>
+					<br />
+					<button type="button" name="PerfectFourth">Perfect Fourth</button>
+					<button type="button" name="Tritone">Tritone</button>
+					<button type="button" name="PerfectFifth">Perfect Fifth</button>
+					<button type="button" name="MinorSixth">Minor Sixth</button>
+					<button type="button" name="MajorSixth">Major Sixth</button>
+					<br />
+					<button type="button" name="MinorSeventh">Minor Seventh</button>
+					<button type="button" name="MajorSeventh">Major Seventh</button>
+					<button type="button" name="Octave">Octave</button>
+					<button type="button" name="MinorNinth">Minor Ninth</button>
+					<button type="button" name="MajorNinth">Major Ninth</button>
+				</div>
+				<div id="answer" class="answer">&nbsp;</div>
+			</div>
+		</div>
+		<div id="random"></div>
+	</body>
+</html>
