@@ -20,7 +20,10 @@ function initialize() {
 
 function calculateRoute() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(calcRoute);
+    displayMessageOnFind("Calculating...");
+    navigator.geolocation.getCurrentPosition(calcRoute, calcRouteError);
+  } else {
+    displayMessageOnFind("Geolocation not supported by browser.");
   }
 }
 
@@ -42,48 +45,25 @@ function calcRoute(pos) {
       directionsDisplay.setDirections(result);
     }
   });
+  displayMessageOnFind("");
 }
 
-function sendEmail() {
-  var name = document.getElementById('contactName');
-  var email = document.getElementById('contactEmail');
-  var message = document.getElementById('contactMessage');
-
-  var body = {};
-  body.name = name;
-  body.email = email;
-  body.message = message;
-
-  ajaxRequest('contact', body, function(status) {
-    if (status === 200) {
-      displayMessage('Email successfully sent.');
-    } else {
-      displayMessage('Unfortunately, an error occured. Please try again in a few minutes.');
-    }
-  })
-}
-
-function ajaxRequest(url, body, callback) {
-  var request = new XMLHttpRequest();
-  request.open("POST", url, true);
-
-  request.onreadystatechange = function() {
-      if (request.readyState == 4)
-      {
-          if (request.status == 200 && request.getResponseHeader("Content-Length") > 0) {
-              callback(JSON.parse(request.responseText));
-          } else {
-              callback(request.status);
-          }
-      }
+function calcRouteError(err) {
+  var message = "";
+  switch (err.code) {
+    case 1:
+      message = "Permission was not granted to use your location.";
+      break;
+    case 2:
+      message = "Could not calculate your location.";
+      break;
+    case 3:
+      message = "Timed out retreiving directions.";
+      break;
   }
-  try {
-    request.send(JSON.stringify(body));
-  } catch (ex) {
-    callback(500);
-  }
+  displayMessageOnFind(message);
 }
 
-function displayMessage(message) {
-  document.getElementById('info').innerHTML = message;
+function displayMessageOnFind(message) {
+  document.getElementById('calc').innerHTML = message;
 }
