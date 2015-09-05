@@ -7,6 +7,7 @@ body
 }
 
 button {
+    clear: both;
     margin-top: .5em;
     background-color: #238bc6;
     height: 3em;

@@ -10,6 +10,15 @@
     </head>
 
     <body onload="init()" background="blue">
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="game.html">Play TicTacToe</a></li>
+                <li><a href="eartrain.html">Train those ears</a></li>
+            </ul>
+        </nav>
+        <br/><br/><br/>
+        <div class="content">
         <div class="btn center">
         <button onclick="newGame()">New Game</button>
         <button onclick="forfeit()">Forfeit</button>
@@ -18,11 +27,16 @@
         <canvas id="tictactoe" onclick="handleClick(event)"></canvas>
         </div>
         <div id="message" class="center"></div>
+        </div>
         <script>
-          var cb = function() {
+          var loadStyle = function(name) {
             var l = document.createElement('link'); l.rel = 'stylesheet'; l.media = "screen"
-            l.href = 'style/game.css';
+            l.href = name;
             var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+          }
+          var cb = function() {
+            loadStyle('style/game.css');
+            loadStyle('style/style.css');
           };
           var raf = requestAnimationFrame || mozRequestAnimationFrame ||
               webkitRequestAnimationFrame || msRequestAnimationFrame;

@@ -2,14 +2,47 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.left {
-    padding-right: 1em;
+/*nav {
+    margin-top: 5px auto 10px;
+    border-radius: 7px;
+    background-color: #000000;
+}*/
+
+nav ul {
+    margin-top: 5px auto 10px;
+    border-radius: 7px;
+    background-color: #B2B2CC;
+    display: block;
     float: left;
-    height: 100%;
-    background-color: #e2e2d7;
-    border-radius: 6px 6px 0 0;
+    list-style-type:none;/*
+    width: 100%;*/
+    font-family: Cicle;
+}
+
+nav a:link, nav a:visited {
+    /*width: 90px;*/
+    color:#121214;
+    display:block;
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+}
+
+nav a:hover, nav a:active {
+    color:#00006B;
+}
+
+nav li {
+    float:left;
+    padding-right: .75em;
+    padding-left: .75em;
+}
+
+header {
+    clear: both;
 }
 
 .content {
     height: 100%;
+    /*clear: both;*/
 }

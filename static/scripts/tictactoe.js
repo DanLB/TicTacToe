@@ -80,7 +80,7 @@ function registered(registration) {
 
     drawBoard();
 
-    displayMessage(ticGame.gameId);
+    displayMessage('Playing TicTacToe!');
 }
 
 function displayMessage(message, append) {
