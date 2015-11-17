@@ -15,7 +15,7 @@ function init() {
 	try {
 		// Fix up for prefixing
 		window.AudioContext = window.AudioContext || window.webkitAudioContext;
-		context = new AudioContext();
+		context = new window.AudioContext();
 	} catch(e) {
 		alert('Web Audio API is not supported in this browser. Please update to a modern browser to practice sightsinging');
 	}
